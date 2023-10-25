@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Copacabana</title>
+    <link rel="icon" href="public/images/logo_copacabana.ico" type="image/x-icon"/>
+    <link rel='stylesheet' href='public/stylesheets/style.css' />
+  </head>
+  <body onload="loadValues()">
+    <div id="receipts-template">
+        <h1></h1>
+        <!-- https://github.com/sparksuite/simple-html-invoice-template/blob/master/website/index.html -->
+    
+        <div class="invoice-box" id="element-to-print">
+            <table>
+                <tr class="top">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td class="title" style="padding: 0px !important;">
+                                    <img src="public/images/logo_copacabana.jpeg" alt="Company logo" style="width: 8rem" />
+                                </td>
+    
+                                <td style="padding: 0px !important;">
+                                    Recibo #: 0000000001<br />
+                                    Fecha: <span id="dateEmit">99/99/9999</span><br />
+                                    <input class="input-customer" id="customer-name" type="text" value="customerName">
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+    
+                <tr class="information">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td>
+                                    <span id="addressLine1">Circuito, Copacabana.</span><br />
+                                    <span id="addressLine2">Roble Oeste</span><br />
+                                    <span id="addressLine3">Tegucigalpa, D.C 11101</span>
+                                </td>
+    
+                                <td>
+                                    <span id="companyName">Vecindario Copacabana</span><br />
+                                    <span id="companyRepresentative">Junta Directiva</span><br />
+                                    <span id="companyEmail">copacabana.hn@gmail.com</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+    
+                <tr class="heading">
+                    <td>Descripción</td>
+    
+                    <td>Precio</td>
+                </tr>
+    
+                <tr class="item">
+                    <td>
+                        <input class="input-concept" type="text" value="Pago por servicios de seguridad correspondiente al mes de julio 2023" id="concept"/>
+                    </td>
+    
+                    <td>
+                        <input class="input-price" type="text" value="L. 900.00" id="unitPrice"/>
+                    </td>
+                </tr>
+    
+                <tr class="total">
+                    <td></td>
+    
+                    <td>
+                        <input class="input-price" type="text" value="Total: L. 1800.00" id="totalPrice"/>
+                    </td>
+                </tr>
+    
+                <tr class="heading">
+                    <td>Valor en letras</td>
+    
+                    <td></td>
+                </tr>
+    
+                <tr class="item">
+                    <td>
+                        <input class="input-concept" type="text" value="Mil ochocientos lempiras exactos" id="totalPriceText"/>
+                    </td>
+                    <td></td>
+                </tr>
+    
+                <tr class="item">
+                    <td style="padding-right: 12rem">
+                        <img src="public/images/signature.png" alt="Firma" style="width: 10rem; margin-bottom: -1rem; float:right" />
+                    </td>
+                    <td></td>
+                </tr>
+    
+            </table>
+        </div>
+        <br/>
+        <button id="generate" class="btn">Descargar</button>
+    </div>
+  </body>
+   <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+   <script src="public/javascripts/pdf-handler.js"></script>
+</html>
