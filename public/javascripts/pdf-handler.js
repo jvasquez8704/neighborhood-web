@@ -24,7 +24,8 @@ document.getElementById('generate').onclick = function () {
 	var fileName = `RECIBO ${clientName} COPACABANA`;
 	var element = document.getElementById('element-to-print');
 	var opt = {
-		filename:fileName
+		filename:fileName,
+		jsPDF: { format: 'letter', orientation: 'landscape' }
 	  };
 	html2pdf(element, opt);
 };

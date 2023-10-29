@@ -25,7 +25,9 @@ body a {
 
 .invoice-box {
   max-width: 800px;
-  margin: auto;
+  margin-top: 3rem;
+  margin-left: auto;
+  margin-right: auto;
   padding: 30px;
   border: 1px solid #eee;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
