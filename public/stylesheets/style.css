@@ -1,4 +1,4 @@
-body {
+/* body {
   font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
   text-align: center;
   color: #777;
@@ -21,10 +21,10 @@ body h3 {
 
 body a {
   color: #06f;
-}
+} */
 
 .invoice-box {
-  max-width: 800px;
+  max-width: 900px;
   margin-top: 3rem;
   margin-left: auto;
   margin-right: auto;
@@ -90,7 +90,7 @@ body a {
   font-weight: bold;
 }
 
-.btn {
+#receipts-template .btn {
   box-sizing: border-box;
   appearance: none;
   background-color: transparent;
@@ -118,7 +118,7 @@ body a {
   }
 }
 
-input 				{
+#receipts-template input 				{
   font-size:16px;
   padding:10px 10px 0px 5px;
   display:block;
@@ -128,24 +128,24 @@ input 				{
 }
 input:focus 		{ outline:none; }
 
-.input-concept {
+#receipts-template .input-concept {
   width:40rem;
 }
-.input-customer {
+#receipts-template .input-customer {
   float: right;
   width:25rem;
   text-align: right;
   padding:4px 0px 0px 5px;
 }
 
-.input-price {
+#receipts-template .input-price {
   float: right;
   width:9rem;
   text-align: right;
   padding:4px 0px 0px 5px;
 }
 
-.total .input-price {
+#receipts-template .total .input-price {
   border-top: 2px solid #eee;
   font-weight: bold;
 }

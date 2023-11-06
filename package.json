@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy": "npx gh-pages -d ."
+    "oscarito": "npx gh-pages -d ."
   },
   "keywords": [],
   "author": "",
