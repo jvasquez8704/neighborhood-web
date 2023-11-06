@@ -7,6 +7,9 @@ var ctx = canvas.getContext('2d');
 canvas.width = 500;
 canvas.height = 350;
 
+const plusX = -250;
+const plusY = -80;
+
 ctx.lineWidth = 3;
 ctx.lineJoin = ctx.lineCap = 'round';
 
@@ -22,8 +25,8 @@ canvas.onmousemove = function(event) {
 
   ctx.beginPath();
   
-  ctx.moveTo(drawLine.x, drawLine.y);
-  ctx.lineTo(event.clientX, event.clientY);
+  ctx.moveTo(drawLine.x + plusX, drawLine.y + plusY);
+  ctx.lineTo(event.clientX + plusX, event.clientY + plusY);
   ctx.stroke();
      
   drawLine = { x: event.clientX, y: event.clientY };
