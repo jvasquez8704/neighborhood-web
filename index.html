@@ -1,107 +1,181 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Copacabana</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Admin RC</title>
     <link rel="icon" href="public/images/logo_copacabana.ico" type="image/x-icon"/>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="public/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
     <link rel='stylesheet' href='public/stylesheets/style.css' />
+    <link href="public/dashboard.css" rel="stylesheet">
   </head>
   <body onload="loadValues()">
-    <div id="receipts-template">
-        <h1></h1>
-        <!-- https://github.com/sparksuite/simple-html-invoice-template/blob/master/website/index.html -->
     
-        <div class="invoice-box" id="element-to-print">
-            <table>
-                <tr class="top">
-                    <td colspan="2">
-                        <table>
-                            <tr>
-                                <td class="title" style="padding: 0px !important;">
-                                    <img src="public/images/logo_copacabana.jpeg" alt="Company logo" style="width: 8rem" />
-                                </td>
-    
-                                <td style="padding: 0px !important;">
-                                    Recibo #: 0000000001<br />
-                                    Fecha: <span id="dateEmit">99/99/9999</span><br />
-                                    <input class="input-customer" id="customer-name" type="text" value="customerName">
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-    
-                <tr class="information">
-                    <td colspan="2">
-                        <table>
-                            <tr>
-                                <td>
-                                    <span id="addressLine1">Circuito, Copacabana.</span><br />
-                                    <span id="addressLine2">Roble Oeste</span><br />
-                                    <span id="addressLine3">Tegucigalpa, D.C 11101</span>
-                                </td>
-    
-                                <td>
-                                    <span id="companyName">Vecindario Copacabana</span><br />
-                                    <span id="companyRepresentative">Junta Directiva</span><br />
-                                    <span id="companyEmail">copacabana.hn@gmail.com</span>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-    
-                <tr class="heading">
-                    <td>Descripción</td>
-    
-                    <td>Precio</td>
-                </tr>
-    
-                <tr class="item">
-                    <td>
-                        <input class="input-concept" type="text" value="Pago por servicios de seguridad correspondiente al mes de julio 2023" id="concept"/>
-                    </td>
-    
-                    <td>
-                        <input class="input-price" type="text" value="L. 900.00" id="unitPrice"/>
-                    </td>
-                </tr>
-    
-                <tr class="total">
-                    <td></td>
-    
-                    <td>
-                        <input class="input-price" type="text" value="Total: L. 1800.00" id="totalPrice"/>
-                    </td>
-                </tr>
-    
-                <tr class="heading">
-                    <td>Valor en letras</td>
-    
-                    <td></td>
-                </tr>
-    
-                <tr class="item">
-                    <td>
-                        <input class="input-concept" type="text" value="Mil ochocientos lempiras exactos" id="totalPriceText"/>
-                    </td>
-                    <td></td>
-                </tr>
-    
-                <tr class="item">
-                    <td style="padding-right: 12rem">
-                        <img src="public/images/signature.png" alt="Firma" style="width: 10rem; margin-bottom: -1rem; float:right" />
-                    </td>
-                    <td></td>
-                </tr>
-    
-            </table>
-        </div>
-        <br/>
-        <button id="generate" class="btn">Descargar</button>
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Admin RC</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <input class="form-control form-control-dark w-100" type="text" placeholder="Buscar" aria-label="Buscar">
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a class="nav-link px-3" href="#">Salir</a>
     </div>
+  </div>
+</header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                        <span data-feather="file"></span>
+                        Recibos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="base.html">
+                        <span data-feather="file-text"></span>
+                        Firma
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+                <div id="receipts-template">
+                    <h1></h1>
+                    <!-- https://github.com/sparksuite/simple-html-invoice-template/blob/master/website/index.html -->
+                
+                    <div class="invoice-box" id="element-to-print">
+                        <table>
+                            <tr class="top">
+                                <td colspan="2">
+                                    <table>
+                                        <tr>
+                                            <td class="title" style="padding: 0px !important;">
+                                                <img src="public/images/logo_copacabana.jpeg" alt="Company logo" style="width: 8rem" />
+                                            </td>
+                
+                                            <td style="padding: 0px !important;">
+                                                Recibo #: 0000000001<br />
+                                                Fecha: <span id="dateEmit">99/99/9999</span><br />
+                                                <input class="input-customer" id="customer-name" type="text" value="customerName">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                
+                            <tr class="information">
+                                <td colspan="2">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <span id="addressLine1">Circuito, Copacabana.</span><br />
+                                                <span id="addressLine2">Roble Oeste</span><br />
+                                                <span id="addressLine3">Tegucigalpa, D.C 11101</span>
+                                            </td>
+                
+                                            <td>
+                                                <span id="companyName">Vecindario Copacabana</span><br />
+                                                <span id="companyRepresentative">Junta Directiva</span><br />
+                                                <span id="companyEmail">copacabana.hn@gmail.com</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                
+                            <tr class="heading">
+                                <td>Descripción</td>
+                
+                                <td>Precio</td>
+                            </tr>
+                
+                            <tr class="item">
+                                <td>
+                                    <input class="input-concept" type="text" value="Pago por servicios de seguridad correspondiente al mes de julio 2023" id="concept"/>
+                                </td>
+                
+                                <td>
+                                    <input class="input-price" type="text" value="L. 900.00" id="unitPrice"/>
+                                </td>
+                            </tr>
+                
+                            <tr class="total">
+                                <td></td>
+                
+                                <td>
+                                    <input class="input-price" type="text" value="Total: L. 1800.00" id="totalPrice"/>
+                                </td>
+                            </tr>
+                
+                            <tr class="heading">
+                                <td>Valor en letras</td>
+                
+                                <td></td>
+                            </tr>
+                
+                            <tr class="item">
+                                <td>
+                                    <input class="input-concept" type="text" value="Mil ochocientos lempiras exactos" id="totalPriceText"/>
+                                </td>
+                                <td></td>
+                            </tr>
+                
+                            <tr class="item">
+                                <td style="padding-right: 12rem">
+                                    <img src="public/images/signature.png" alt="Firma" style="width: 10rem; margin-bottom: -1rem; float:right" />
+                                </td>
+                                <td></td>
+                            </tr>
+                
+                        </table>
+                    </div>
+                    <br/>
+                    <button id="generate" class="btn">Descargar</button>
+                </div>
+            
+            </main>
+        </div>
+    </div>
+
+
+    <script src="public/assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+    <!-- <script src="public/dashboard.js"></script> -->
+    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+    <script src="public/javascripts/pdf-handler.js"></script>
   </body>
-   <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
-   <script src="public/javascripts/pdf-handler.js"></script>
 </html>
