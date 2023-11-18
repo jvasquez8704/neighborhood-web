@@ -19,8 +19,8 @@ document.getElementById('generate').onclick = function () {
 	 * validando logica del correlativo
 	*/
 	var correlative = document.getElementById('customer-recipt').value
-	//const mainClausule = 
-	if('_____' !== correlative && (isNaN(correlative) || isNaN(parseInt(correlative)) || parseInt(correlative) <= 0)) {
+	const isWrongCorrelative = '_____' !== correlative && (isNaN(correlative) || isNaN(parseInt(correlative)) || parseInt(correlative) <= 0)
+	if(isWrongCorrelative) {
 		alert(`El campo Recibo #: ${correlative} debe ser un numera valido mayor que 0`)
 	}
 	/**
@@ -28,21 +28,24 @@ document.getElementById('generate').onclick = function () {
 	 * logica de validacion del nombre de recibo
 	*/
 	var clientName = document.getElementById('customer-name').value;
-	if(defaultName === clientName ) {
+	const isWrongName = defaultName === clientName
+	if(isWrongName ) {
 		alert(`Debe ingresar un nombre de la persona a quien se esta extendiendo el recibo en proceso`)
 	}
     /**
 	 * @html2pdf
 	 * set de propiedades para la creacion del archivo
 	*/
-	clientName = clientName ? clientName.toUpperCase().replace('.','').replace('SR','').replace('SRA','') : '';
-	var fileName = `RECIBO ${clientName} COPACABANA`;
-	var element = document.getElementById('element-to-print');
-	var opt = {
-		filename:fileName,
-		jsPDF: { format: 'letter', orientation: 'landscape' }
-	  };
-	html2pdf(element, opt);
+	if(!isWrongCorrelative && !isWrongName) {
+		clientName = clientName ? clientName.toUpperCase().replace('.','').replace('SR','').replace('SRA','') : '';
+		var fileName = `RECIBO ${clientName} COPACABANA`;
+		var element = document.getElementById('element-to-print');
+		var opt = {
+			filename:fileName,
+			jsPDF: { format: 'letter', orientation: 'landscape' }
+		  };
+		html2pdf(element, opt);
+	}
 };
 
 document.getElementById('mode').onchange = function () {
