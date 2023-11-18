@@ -73,23 +73,22 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
                 <div id="receipts-template">
-                    <h1></h1>
                     <!-- https://github.com/sparksuite/simple-html-invoice-template/blob/master/website/index.html -->
                 
                     <div class="invoice-box" id="element-to-print">
                         <table>
-                            <tr class="top" style="height: 8rem;">
+                            <tr class="top">
                                 <td colspan="2">
                                     <table>
                                         <tr>
-                                            <td class="title" style="padding: 0px !important;">
-                                                <img src="public/images/logo.jpeg" alt="Company logo" style="position: fixed; z-index: -1; top: 5rem;" />
+                                            <td class="title">
+                                                <img src="public/images/logo_original.jpg" alt="Company logo" />
                                             </td>
                 
                                             <td style="padding: 0px !important;">
-                                                Recibo #: 0000000001<br />
-                                                Fecha: <span id="dateEmit">99/99/9999</span><br />
-                                                <input class="input-customer" id="customer-name" type="text" value="customerName">
+                                                <span>Recibo #:</span> <span id="customer-recipt-prefix"></span> <input id="customer-recipt" type="text" maxlength="5"><br />
+                                                Fecha:<input type="date" id="dateEmit" name="birthday"><br />
+                                                <input class="input-customer" id="customer-name" type="text" value="customerName" placeholder="Escriba_el_nombre_del _vecino">
                                             </td>
                                         </tr>
                                     </table>
@@ -155,7 +154,7 @@
                 
                             <tr class="item">
                                 <td style="padding-right: 12rem">
-                                    <img src="public/images/signature.png" alt="Firma" style="width: 10rem; margin-bottom: -1rem; float:right" />
+                                    <img src="public/images/firma_doc1.png" alt="Firma" style="width: 10rem; margin-bottom: -1rem; float:right" />
                                 </td>
                                 <td></td>
                             </tr>
@@ -163,7 +162,19 @@
                         </table>
                     </div>
                     <br/>
-                    <button id="generate" class="btn">Descargar</button>
+                    <div class="controls">
+                        <div class="mb-3 par">
+                            <label for="mode" id="mode-l" class="form-label"><strong>Modo de impresión</strong></label>
+                            <select id="mode" class="form-select form-select-sm" aria-label="Modo Impresion Correlativos">
+                                <option value="system">Sistema</option>
+                                <option value="printer" selected >Imprenta</option>
+                            </select>
+                            
+                        </div>
+                        <div class="mb-3 par">
+                            <button id="generate" class="btn btn-sm">Descargar</button>
+                        </div>
+                    </div>
                 </div>
             
             </main>

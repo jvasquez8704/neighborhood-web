@@ -61,7 +61,13 @@ body a {
   font-size: 45px;
   line-height: 45px;
   color: #333;
+  width: 10rem;
+  padding: 0px !important;
 }
+
+.invoice-box table tr.top table td.title img {
+  width: 13rem
+ }
 
 .invoice-box table tr.information table td {
   padding-bottom: 10px;
@@ -138,6 +144,20 @@ input:focus 		{ outline:none; }
   padding:4px 0px 0px 5px;
 }
 
+#customer-recipt {
+  float: right;
+  width:2.7rem;
+  text-align: right;
+  padding:0px 0px 0px 0px !important;
+}
+
+#dateEmit {
+  float: right;
+  width: 7rem;
+  text-align: right;
+  padding:0px 0px 0px 0px !important;
+}
+
 #receipts-template .input-price {
   float: right;
   width:9rem;
@@ -149,6 +169,19 @@ input:focus 		{ outline:none; }
   border-top: 2px solid #eee;
   font-weight: bold;
 }
+
+.controls {
+  padding: 0 6rem;
+}
+
+#mode, #mode-l {
+margin: 0 20px;
+}
+
+.par {
+  width: 12rem;
+}
+
 
 @media only screen and (max-width: 600px) {
   .invoice-box table tr.top table td {
