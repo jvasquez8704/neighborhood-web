@@ -109,7 +109,7 @@ document.getElementById('generate').onclick = function () {
 	*/
 	if(!isWrongCorrelative && !isWrongName && !isWrongDesc && !isWrongMonth && !isWrongYear) {
 		clientName = clientName ? clientName.toUpperCase().replace('.','').replace('SR','').replace('SRA','') : '';
-		var fileName = `RECIBO ${clientName} COPACABANA`;
+		var fileName = hanlder === PRINTER_STR ? PRINTER_STR.toUpperCase() :`RECIBO ${clientName} COPACABANA`;
 		var element = document.getElementById('element-to-print');
 		var opt = {
 			filename:fileName,
