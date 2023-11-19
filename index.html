@@ -1,80 +1,212 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
     <title>Admin RC</title>
-    <link rel="icon" href="public/images/logo_copacabana.ico" type="image/x-icon"/>
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
-
-    <!-- Bootstrap core CSS -->
-    <link href="public/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="public/images/logo_copacabana.ico" type="image/x-icon" />
 
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
+        .invoice-box {
+            max-width: 900px;
+            margin-top: 3rem;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            font-size: 16px;
+            line-height: 24px;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #555;
         }
-      }
+
+        .invoice-box table {
+            width: 100%;
+            line-height: inherit;
+            text-align: left;
+            border-collapse: collapse;
+        }
+
+        .invoice-box table td {
+            padding: 5px;
+            vertical-align: top;
+        }
+
+        .invoice-box table tr td:nth-child(2) {
+            text-align: right;
+        }
+
+        .invoice-box table tr.top table td {
+            padding-bottom: 20px;
+        }
+
+        .invoice-box table tr.top table td.title {
+            font-size: 45px;
+            line-height: 45px;
+            color: #333;
+            width: 10rem;
+            padding: 0px !important;
+        }
+
+        .invoice-box table tr.top table td.title img {
+            width: 13rem
+        }
+
+        .invoice-box table tr.information table td {
+            padding-bottom: 10px;
+        }
+
+        .invoice-box table tr.heading td {
+            background: #eee;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        .invoice-box table tr.details td {
+            padding-bottom: 20px;
+        }
+
+        .invoice-box table tr.item td {
+            border-bottom: 1px solid #eee;
+        }
+
+        .invoice-box table tr.item.last td {
+            border-bottom: none;
+        }
+
+        .invoice-box table tr.total td:nth-child(2) {
+            border-top: 2px solid #eee;
+            font-weight: bold;
+        }
+
+        #receipts-template .btn {
+            box-sizing: border-box;
+            appearance: none;
+            background-color: transparent;
+            border: 2px solid #3498db;
+            border-radius: 0.6em;
+            color: #3498db;
+            cursor: pointer;
+            /* display: flex; */
+            align-self: center;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1;
+            margin: 20px;
+            padding: 1.2em 2.8em;
+            text-decoration: none;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+
+            &:hover,
+            &:focus {
+                color: #5f5b5b;
+                outline: 0;
+            }
+        }
+
+        #receipts-template input {
+            font-size: 16px;
+            padding: 10px 10px 0px 5px;
+            display: block;
+            border: none;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #555;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        #receipts-template .input-concept {
+            width: 40rem;
+        }
+
+        #receipts-template .input-customer {
+            float: right;
+            width: 25rem;
+            text-align: right;
+            padding: 4px 0px 0px 5px;
+        }
+
+        #customer-recipt {
+            float: right;
+            width: 2.7rem;
+            text-align: right;
+            padding: 0px 0px 0px 0px !important;
+        }
+
+        #dateEmit {
+            float: right;
+            width: 7rem;
+            text-align: right;
+            padding: 0px 0px 0px 0px !important;
+        }
+
+        #receipts-template .input-price {
+            float: right;
+            width: 9rem;
+            text-align: right;
+            padding: 4px 0px 0px 5px;
+        }
+
+        #receipts-template .total .input-price {
+            border-top: 2px solid #eee;
+            font-weight: bold;
+        }
+
+        .controls {
+            padding: 0 6rem;
+        }
+
+        #mode,
+        #mode-l {
+            margin: 0 20px;
+        }
+
+        .par {
+            width: 12rem;
+        }
+
+
+        @media only screen and (max-width: 600px) {
+            .invoice-box table tr.top table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+
+            .invoice-box table tr.information table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+        }
     </style>
 
-    
+
     <!-- Custom styles for this template -->
-    <link rel='stylesheet' href='public/stylesheets/style.css' />
+    <!-- <link rel='stylesheet' href='public/stylesheets/style.css' /> -->
     <link href="public/dashboard.css" rel="stylesheet">
-  </head>
-  <body onload="loadValues()">
-    
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Admin RC</a>
-  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <input class="form-control form-control-dark w-100" type="text" placeholder="Buscar" aria-label="Buscar">
-  <div class="navbar-nav">
-    <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="#">Salir</a>
-    </div>
-  </div>
-</header>
+</head>
+
+<body onload="loadValues()">
 
     <div class="container-fluid">
         <div class="row">
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div class="position-sticky pt-3">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                        <span data-feather="file"></span>
-                        Recibos
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="base.html">
-                        <span data-feather="file-text"></span>
-                        Firma
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            </nav>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
                 <div id="receipts-template">
                     <!-- https://github.com/sparksuite/simple-html-invoice-template/blob/master/website/index.html -->
-                
+
                     <div class="invoice-box" id="element-to-print">
                         <table>
                             <tr class="top">
@@ -84,17 +216,42 @@
                                             <td class="title">
                                                 <img src="public/images/logo_original.jpg" alt="Company logo" />
                                             </td>
-                
+
                                             <td style="padding: 0px !important;">
-                                                <span>Recibo #:</span> <span id="customer-recipt-prefix"></span> <input id="customer-recipt" type="text" maxlength="5"><br />
-                                                Fecha:<input type="date" id="dateEmit" name="birthday"><br />
-                                                <input class="input-customer" id="customer-name" type="text" value="customerName" placeholder="Escriba_el_nombre_del _vecino">
+                                                <div style="margin-bottom: 4px;">
+                                                    <span>Recibo #:</span><span id="customer-recipt-prefix"></span> 
+                                                    <input id="customer-recipt" type="text" maxlength="5" style="font-size: 16px;
+                                                    padding: 2.5px 5px 0px 0px !important;
+                                                    display: block;
+                                                    border: none;
+                                                    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                                                    color: #555;"/>
+                                                </div>
+                                                <div style="margin-bottom: 0px !important;">
+                                                <span>Fecha:</span><input type="date" id="dateEmit" name="birthday" style="font-size: 16px;
+                                                padding: 1px 0px 0px 0px !important;
+                                                width: 7rem !important;
+                                                display: block;
+                                                border: none;
+                                                font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                                                color: #555;">
+                                                </div>
+                                                <input class="input-customer" id="customer-name" type="text"
+                                                    value="customerName" placeholder="Escriba_el_nombre_del _vecino" style="font-size: 16px;
+                                                    padding: 4px 3px 0px 5px !important;
+                                                    float: right !important;
+                                                    width: 25rem !important;
+                                                    text-align: right !important;
+                                                    display: block;
+                                                    border: none;
+                                                    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                                                    color: #555;">
                                             </td>
                                         </tr>
                                     </table>
                                 </td>
                             </tr>
-                
+
                             <tr class="information">
                                 <td colspan="2">
                                     <table>
@@ -104,7 +261,7 @@
                                                 <span id="addressLine2">Roble Oeste</span><br />
                                                 <span id="addressLine3">Tegucigalpa, D.C 11101</span>
                                             </td>
-                
+
                                             <td>
                                                 <span id="companyName">Vecindario Copacabana</span><br />
                                                 <span id="companyRepresentative">Junta Directiva</span><br />
@@ -114,79 +271,109 @@
                                     </table>
                                 </td>
                             </tr>
-                
+
                             <tr class="heading">
                                 <td>Descripción</td>
-                
+
                                 <td>Precio</td>
                             </tr>
-                
+
                             <tr class="item">
                                 <td>
-                                    <input class="input-concept" type="text" value="Pago por servicios de seguridad correspondiente al mes de julio 2023" id="concept"/>
+                                    <input class="input-concept" type="text" id="input-concept-desc"
+                                        value="Pago por servicios de seguridad correspondiente al mes de julio 2023"
+                                        id="concept" style="font-size: 16px;
+                                        padding: 10px 10px 0px 5px !important;
+                                        display: block;
+                                        border: none;
+                                        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                                        color: #555;
+                                        width: 40rem !important;" />
                                 </td>
-                
+
                                 <td>
-                                    <input class="input-price" type="text" value="L. 900.00" id="unitPrice"/>
+                                    <input class="input-price" type="text" value="L. 900.00" id="unitPrice" style="font-size: 16px;
+                                    padding: 10px 10px 0px 5px;
+                                    float: right !important;
+                                    width: 9rem !important;
+                                    text-align: right !important;
+                                    display: block;
+                                    border: none;
+                                    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                                    color: #555;"/>
                                 </td>
                             </tr>
-                
+
                             <tr class="total">
                                 <td></td>
-                
+
                                 <td>
-                                    <input class="input-price" type="text" value="Total: L. 1800.00" id="totalPrice"/>
+                                    <input class="input-price" type="text" value="Total: L. 1800.00" id="totalPrice" style="font-size: 16px;
+                                    padding: 10px 10px 0px 5px;
+                                    float: right !important;
+                                    width: 9rem !important;
+                                    text-align: right !important;
+                                    display: block;
+                                    border: none;
+                                    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                                    color: #555;" />
                                 </td>
                             </tr>
-                
+
                             <tr class="heading">
                                 <td>Valor en letras</td>
-                
+
                                 <td></td>
                             </tr>
-                
+
                             <tr class="item">
                                 <td>
-                                    <input class="input-concept" type="text" value="Mil ochocientos lempiras exactos" id="totalPriceText"/>
+                                    <input class="input-concept" type="text" value="Mil ochocientos lempiras exactos"
+                                        id="totalPriceText" style="font-size: 16px;
+                                        padding: 10px 10px 0px 5px;
+                                        display: block;
+                                        border: none;
+                                        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                                        color: #555;
+                                        width: 40rem !important;" />
                                 </td>
                                 <td></td>
                             </tr>
-                
+
                             <tr class="item">
                                 <td style="padding-right: 12rem">
-                                    <img src="public/images/firma_doc1.png" alt="Firma" style="width: 10rem; margin-bottom: -1rem; float:right" />
+                                    <img src="public/images/firma_doc1.png" alt="Firma"
+                                        style="width: 10rem; margin-bottom: -1rem; float:right" />
                                 </td>
                                 <td></td>
                             </tr>
-                
+
                         </table>
                     </div>
-                    <br/>
+                    <br />
                     <div class="controls">
                         <div class="mb-3 par">
                             <label for="mode" id="mode-l" class="form-label"><strong>Modo de impresión</strong></label>
-                            <select id="mode" class="form-select form-select-sm" aria-label="Modo Impresion Correlativos">
+                            <select id="mode" class="form-select form-select-sm"
+                                aria-label="Modo Impresion Correlativos">
                                 <option value="system">Sistema</option>
-                                <option value="printer" selected >Imprenta</option>
+                                <option value="printer" selected>Imprenta</option>
                             </select>
-                            
+
                         </div>
                         <div class="mb-3 par">
                             <button id="generate" class="btn btn-sm">Descargar</button>
                         </div>
                     </div>
                 </div>
-            
+
             </main>
         </div>
     </div>
 
 
-    <script src="public/assets/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-    <!-- <script src="public/dashboard.js"></script> -->
     <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
     <script src="public/javascripts/pdf-handler.js"></script>
-  </body>
+</body>
+
 </html>
