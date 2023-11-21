@@ -89,7 +89,7 @@ document.getElementById('generate').onclick = function () {
 	*/
 	var conceptDescription = document.getElementById('input-concept-desc').value;
 
-	const isWrongDesc = hanlder === SYSTEM_STR_STR && !conceptDescription
+	const isWrongDesc = hanlder === SYSTEM_STR && !conceptDescription
 	if(isWrongDesc ) {
 		alert(`Debe ingresar una descripción`)
 	}
