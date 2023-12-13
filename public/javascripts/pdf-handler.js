@@ -3,10 +3,10 @@
 // https://www.youtube.com/watch?v=G2FoSpsq3Rw
 const SYSTEM_STR = 'system';
 const PRINTER_STR = 'printer';
-let hanlder = PRINTER_STR;
+let hanlder = SYSTEM_STR;
 const defaultName = 'Escriba el nombre del vecino';
 const defaultDescription = 'Pago por servicios de seguridad correspondiente al mes de [mes] de [año]';
-const defaultNamePrint = '_________________________________';
+const defaultNamePrint = '';
 const defaultCorrelativePrint = '_____';
 const defaultDatePrint = '_____________';
 const defaultCorrelativeSystem = '#####';
@@ -24,6 +24,9 @@ loadValues = () => {
 	document.getElementById('totalPriceText').value = '';
 	document.getElementById("dateEmit").type = "text";
 	document.getElementById("dateEmit").value = defaultDatePrint;
+	let selectMode = document.getElementById('mode');
+	selectMode.value = hanlder;
+	selectMode.dispatchEvent(new Event('change'))
 }
 
 function getWordsFromNumber(number) {
@@ -89,7 +92,7 @@ document.getElementById('generate').onclick = function () {
 	*/
 	var conceptDescription = document.getElementById('input-concept-desc').value;
 
-	const isWrongDesc = hanlder === SYSTEM_STR_STR && !conceptDescription
+	const isWrongDesc = hanlder === SYSTEM_STR && !conceptDescription
 	if(isWrongDesc ) {
 		alert(`Debe ingresar una descripción`)
 	}
@@ -145,9 +148,7 @@ document.getElementById('mode').onchange = function () {
 
 document.getElementById('unitPrice').onblur = function () {
 	let unitPriceDirty = document.getElementById('unitPrice').value 
-	console.log('before: ', unitPriceDirty);
 	unitPriceDirty = unitPriceDirty.replace('L.', '').trim();
-	console.log('after: ', unitPriceDirty);
 	if(!isNaN(unitPriceDirty)) {
 		document.getElementById('totalPrice').value = 'Total: L. ' + unitPriceDirty;
 	}
