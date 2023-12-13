@@ -6,7 +6,7 @@ const PRINTER_STR = 'printer';
 let hanlder = SYSTEM_STR;
 const defaultName = 'Escriba el nombre del vecino';
 const defaultDescription = 'Pago por servicios de seguridad correspondiente al mes de [mes] de [año]';
-const defaultNamePrint = '';
+const defaultNamePrint = '_________________________________________________________';
 const defaultCorrelativePrint = '_____';
 const defaultDatePrint = '_____________';
 const defaultCorrelativeSystem = '#####';
@@ -76,6 +76,7 @@ document.getElementById('generate').onclick = function () {
 	const isWrongCorrelative = '_____' !== correlative && (isNaN(correlative) || isNaN(parseInt(correlative)) || parseInt(correlative) <= 0)
 	if(isWrongCorrelative) {
 		alert(`El campo Recibo #: ${correlative} debe ser un numera valido mayor que 0`)
+		return;
 	}
 	/**
 	 * @clientName
@@ -84,7 +85,8 @@ document.getElementById('generate').onclick = function () {
 	var clientName = document.getElementById('customer-name').value;
 	const isWrongName = defaultName === clientName
 	if(isWrongName ) {
-		alert(`Debe ingresar un nombre de la persona a quien se esta extendiendo el recibo en proceso`)
+		alert(`Debe ingresar un nombre de la persona a quien se esta extendiendo el recibo en proceso`);
+		return;
 	}
 	/**
 	 * @conceptDescription
@@ -94,17 +96,20 @@ document.getElementById('generate').onclick = function () {
 
 	const isWrongDesc = hanlder === SYSTEM_STR && !conceptDescription
 	if(isWrongDesc ) {
-		alert(`Debe ingresar una descripción`)
+		alert(`Debe ingresar una descripción`);
+		return;
 	}
 
 	const isWrongMonth = hanlder === SYSTEM_STR && conceptDescription.includes('[mes]')
 	if(isWrongMonth ) {
-		alert(`Debe ingresar el mes en la descripción`)
+		alert(`Debe ingresar el mes en la descripción`);
+		return;
 	}
 
 	const isWrongYear = hanlder === SYSTEM_STR && conceptDescription.includes('[año]')
 	if(isWrongYear ) {
-		alert(`Debe ingresar el año en la descripción`)
+		alert(`Debe ingresar el año en la descripción`);
+		return;
 	}
     /**
 	 * @html2pdf
