@@ -130,10 +130,13 @@
         }
 
         #receipts-template .input-customer {
-            float: right;
-            width: 25rem;
-            text-align: right;
-            padding: 4px 0px 0px 5px;
+            width: 30rem;
+            padding: 4px 3px 0px 0px;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            display: inline-block;
+            border: none;
+            color: #555;
         }
 
         #customer-recipt {
@@ -236,16 +239,6 @@
                                                 font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
                                                 color: #555;">
                                                 </div>
-                                                <input class="input-customer" id="customer-name" type="text"
-                                                    value="customerName" style="font-size: 16px;
-                                                    padding: 4px 3px 0px 5px !important;
-                                                    float: right !important;
-                                                    width: 25rem !important;
-                                                    text-align: right !important;
-                                                    display: block;
-                                                    border: none;
-                                                    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-                                                    color: #555;">
                                             </td>
                                         </tr>
                                     </table>
@@ -259,7 +252,10 @@
                                             <td>
                                                 <span id="addressLine1">Circuito, Copacabana.</span><br />
                                                 <span id="addressLine2">Roble Oeste</span><br />
-                                                <span id="addressLine3">Nombre ______________________________________________</span>
+                                                <div>
+                                                    <span id="addressLine3">Nombre:</span>
+                                                    <input class="input-customer" id="customer-name" type="text">
+                                                </div>
                                             </td>
 
                                             <td>
@@ -356,8 +352,8 @@
                             <label for="mode" id="mode-l" class="form-label"><strong>Modo de impresión</strong></label>
                             <select id="mode" class="form-select form-select-sm"
                                 aria-label="Modo Impresion Correlativos">
-                                <option value="system">Sistema</option>
-                                <option value="printer" selected>Imprenta</option>
+                                <option value="system" selected>Sistema</option>
+                                <option value="printer">Imprenta</option>
                             </select>
 
                         </div>
